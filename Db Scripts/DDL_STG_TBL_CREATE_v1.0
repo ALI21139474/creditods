@@ -1,0 +1,100 @@
+DROP TABLE IF EXISTS `creditODS`.`STG_ACCOUNT`; 
+CREATE TABLE IF NOT EXISTS `creditODS`.`STG_ACCOUNT` (
+	`account_number` VARCHAR(50) NOT NULL,
+	`account_opening_dt` DATE NOT NULL,
+	`account_closing_dt` DATE NULL,  
+	`past_due_dt` DATE NULL,
+	`days_past_due` VARCHAR(50) NULL,
+	`writeoff_dt` DATE NULL,
+	`writeoff_amt` VARCHAR(50) NULL,
+	`impaired_dt` DATE NULL,
+	`impaired_amt` VARCHAR(50) NULL,
+	`current_margin` VARCHAR(50) NULL,
+	`src_stm_cd` VARCHAR(50) NOT NULL,
+	`country_cd` VARCHAR(50) NOT NULL,
+	`customer_number` VARCHAR(50) NOT NULL,
+	`relation_type` VARCHAR(50) NULL,
+	`amount_type` VARCHAR(50) NULL,
+	`amount_orig_currency` VARCHAR(50) NULL,
+	`amount_rept_currency` VARCHAR(50) NULL,
+	`bban` VARCHAR(50) NULL,
+	`iban` VARCHAR(50) NULL,
+	`distribution_channel` VARCHAR(50) NULL,
+	`orig_currency_cd` VARCHAR(50) NULL,
+	`orig_balance` VARCHAR(50) NULL,
+	`eff_interest_rate` VARCHAR(50) NULL,
+	`write_off_amt` VARCHAR(50) NULL,
+	`recovery_date` DATE NULL,
+	`recovered_amt` VARCHAR(50) NULL,
+	`product_cd` VARCHAR(50) NOT NULL,
+	`total_principle_amt` VARCHAR(50) NULL,
+	`total_interest_due` VARCHAR(50) NULL,
+	`principle_amt` VARCHAR(50) NULL,
+	`principle_interest_amt` VARCHAR(50) NULL,
+	`penalty_interest_amt` VARCHAR(50) NULL,
+	`processing_fees_amt` VARCHAR(50) NULL,
+	`forb_measure_cd` VARCHAR(50) NULL,
+	`forb_measure_desc` VARCHAR(50) NULL,
+	`forb_closure_cd` VARCHAR(50) NULL,
+	`forb_closure_desc` VARCHAR(50) NULL, 
+	`forb_closure_dt` DATE NULL);
+
+
+DROP TABLE IF EXISTS `creditODS`.`STG_CUSTOMER`;
+CREATE TABLE IF NOT EXISTS `creditODS`.`STG_CUSTOMER` (
+	`customer_number` VARCHAR(50) NOT NULL,
+	`local_customer_number` VARCHAR(50) NOT NULL,
+	`customer_start_dt` DATE NOT NULL,
+	`customer_end_dt` DATE NULL,
+	`status` VARCHAR(50) NULL,
+	`marital_status` VARCHAR(50) NULL,
+	`dob` DATE NULL,
+	`no_of_children` VARCHAR(50) NULL,
+	`customer_ssn` VARCHAR(50) NULL,
+	`spouse_ssn` VARCHAR(50) NULL,   
+	`src_stm_cd` VARCHAR(50) NOT NULL,
+	`country_cd` VARCHAR(50) NOT NULL,
+	`street` VARCHAR(50) NULL,
+	`postal_cd` VARCHAR(50) NULL,
+	`city` VARCHAR(50) NULL,
+	`country` VARCHAR(50) NULL,
+	`occupation_type` VARCHAR(50) NULL,
+	`occupation_desc` VARCHAR(50) NULL,
+	`occupation_status` VARCHAR(50) NULL,
+	`occupation_start_dt` DATE NULL,
+	`occupation_end_dt`	 DATE NULL,
+	`tax_year` VARCHAR(50) NULL,
+	`gross_income` VARCHAR(50) NULL,
+	`net_income` VARCHAR(50) NULL,
+	`taxable_income` VARCHAR(50) NULL,
+	`final_tax` VARCHAR(50) NULL,
+	`aggregated_income`	 VARCHAR(50) NULL);
+
+
+
+
+DROP TABLE IF EXISTS `creditODS`.`STG_PRODUCT`;
+CREATE TABLE IF NOT EXISTS `creditODS`.`STG_PRODUCT` (
+	`product_cd` VARCHAR(50) NOT NULL,
+	`product_start_dt` DATE NOT NULL,
+	`product_end_dt` DATE NULL,
+	`product_status` VARCHAR(50) NULL,
+	`src_stm_cd` VARCHAR(50) NOT NULL,
+	`country_cd` VARCHAR(50) NOT NULL,
+	`product_type` VARCHAR(50) NULL,
+	`product_desc` VARCHAR(50) NULL,
+	`risk_category` VARCHAR(50) NULL);
+
+
+DROP TABLE IF EXISTS `creditODS`.`STG_BUREAU_DEBT_SUMMARY`;
+CREATE TABLE IF NOT EXISTS `creditODS`.`STG_BUREAU_DEBT_SUMMARY` (
+	`customer_number` VARCHAR(50) NOT NULL,
+	`account_number` VARCHAR(50) NOT NULL,
+	`product_cd` VARCHAR(50) NOT NULL,
+	`unsecured_credit_util` VARCHAR(50) NULL,
+	`installment_credit_util` VARCHAR(50) NULL,
+	`credit_card_limit` VARCHAR(50) NULL,
+	`housing_loan_credit_util` VARCHAR(50) NULL,
+	`tenant_owners_right_credit_util` VARCHAR(50) NULL,
+	`src_stm_cd` VARCHAR(50) NOT NULL,
+	`country_cd` VARCHAR(50) NOT NULL);
