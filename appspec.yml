@@ -5,7 +5,7 @@ files:
     destination: /creditODS/script/
 hooks:
   BeforeInstall:
-    - location: sample.sh
+    - location: /creditODS/script/sample.sh
       timeout: 3
       runas: root
   AfterInstall:
