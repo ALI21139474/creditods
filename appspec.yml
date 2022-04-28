@@ -1,23 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /creditODS/
-    destination: /creditODS/script/
-hooks:
-  BeforeInstall:
-    - location: script/sample.sh
-      timeout: 3
-      runas: root
-  AfterInstall:
-    - location: sample.sh
-      timeout: 3
-      runas: root
-  ApplicationStart:
-    - location: sample.sh
-    - location: 
-      timeout: 3
-      runas: root
-  ApplicationStop:
-    - location: sample.sh
-      timeout: 3
-      runas: root
+  - source: /
+    destination: /home/ubuntu/
+
+  
