@@ -1,0 +1,23 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu
+hooks:
+  BeforeInstall:
+    - location: 
+      timeout: 3
+      runas: root
+  AfterInstall:
+    - location: 
+      timeout: 3
+      runas: root
+  ApplicationStart:
+    - location: 
+    - location: 
+      timeout: 3
+      runas: root
+  ApplicationStop:
+    - location: 
+      timeout: 3
+      runas: root
