@@ -9,7 +9,7 @@ BeforeInstall:
       timeout: 3
       runas: root
 ApplicationStart:
-    - location: /cicd_01_create_projdir.sh
+    - location: /creditODS/cicd_01_create_projdir.sh
       timeout: 3
       runas: root
   
