@@ -1,11 +1,11 @@
 version: 0.0
 os: linux
 files:
-  - source: /creditODS/script/sample.sh
+  - source: /creditODS/
     destination: /creditODS/script/
 hooks:
   BeforeInstall:
-    - location: /creditODS/script/sample.sh
+    - location: script/sample.sh
       timeout: 3
       runas: root
   AfterInstall:
