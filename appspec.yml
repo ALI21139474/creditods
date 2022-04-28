@@ -2,6 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/
-
+    destination: /
+ApplicationStart:
+    - location: creditods/sample.sh
+      timeout: 3
+      runas: root
   
