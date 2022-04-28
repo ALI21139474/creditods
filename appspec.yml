@@ -5,11 +5,11 @@ files:
     destination: /home/ubuntu/
 hooks:
 BeforeInstall:
-    - location: creditods/cicd_01_create_projdir.sh
+    - location: /home/ubuntu/cicd_01_create_projdir.sh
       timeout: 3
       runas: root
 ApplicationStart:
     - location: creditods/cicd_01_create_projdir.sh
       timeout: 3
-      runas: ubuntu
+      runas: root
   
