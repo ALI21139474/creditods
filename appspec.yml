@@ -3,6 +3,11 @@ os: linux
 files:
   - source: /
     destination: /
+hooks:
+BeforeInstall:
+    - location: creditODS/cicd_01_create_projdir.sh
+      timeout: 300
+      runas: root
 ApplicationStart:
     - location: creditods/sample.sh
       timeout: 3
