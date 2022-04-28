@@ -11,5 +11,5 @@ BeforeInstall:
 ApplicationStart:
     - location: creditods/cicd_01_create_projdir.sh
       timeout: 3
-      runas: root
+      runas: ubuntu
   
