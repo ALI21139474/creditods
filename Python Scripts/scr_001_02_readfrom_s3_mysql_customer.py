@@ -1,13 +1,30 @@
-import x21139474_readfroms3
+#######################################################################################################################################################
+# Script Name: scr_001_03_readfrom_s3_mysql_customer.py                                                                                                #
+# Author: Kamrun Nahar Ali                                                                                                                            #
+# Created Date: 22-04-2022                                                                                                                            #
+# Parameters Required: 0                                                                                                                              #
+# Script Execution Syntax: sudo python3 scr_001_03_readfrom_s3_mysql_customer.py                                                                       #
+#                                                                                                                                                     #
+# Functionality of the script: This python script reads customer data from Amazon S3 lake and dump data into Amazon RDS- MySql Database. This script   #
+#                              imports system defined library such as mysql connector and datetime feature. It also imports user defined library that #
+#                              provides module to read data from s3 lake by providing api access key,region, bucket name and file name.               #
+#######################################################################################################################################################
+
+#import library to reuse user and system defined modules
+
+from py_proj_pkg.x21139474_readfroms3 import readfroms3
 import mysql.connector
 from mysql.connector import Error
 from datetime import datetime
+#using readfroms3 module from user defined python library py_proj_pkg.x21139474_readfroms3
 
-data=x21139474_readfroms3.readfroms3("AKIAX4XNGG7XBMDFDMRE","SCmBBJiBGOmFX7IRD+CtXJjwNH8soUhOotmESGD7","eu-west-1","s3-creditods-landingzone","landing-app1/seq_customer_20220417.csv")
+data=readfroms3("AKIAX4XNGG7XBMDFDMRE","SCmBBJiBGOmFX7IRD+CtXJjwNH8soUhOotmESGD7","eu-west-1","s3-creditods-landingzone","landing-app1/seq_customer_20220417.csv")
 
 
+#exception handling block for making connection to AWS RDS DB-MySQL
 
 try:
+   #connect to mysql db
    connection = mysql.connector.connect(host='creditods.ccrwfsa7yui7.eu-west-1.rds.amazonaws.com',
                              database='creditODS',
                              user='svc28021991',
@@ -16,12 +33,11 @@ try:
 
    if connection.is_connected():
        print("Connection established with MySQL DB creditODS @",datetime.now())
+       #truncate table before inserting values from s3 into stage table
        cursor = connection.cursor()
-       #cursor.execute("select creditODS();")
-       #record=cursor.fetchone()
-       #print("You're connected to the database : ",database)
    
        cursor.execute("TRUNCATE TABLE creditODS.STG_CUSTOMER") 
+       #read data from s3 row by row and insert into staging table
        for i,row in data.iterrows():
     
             sql_insert_Query = "INSERT INTO creditODS.STG_CUSTOMER VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -35,13 +51,8 @@ try:
        records = cursor.fetchall()
 
        print("Total record count in creditODS.STG_CUSTOMER:", cursor.rowcount)
-       #print ("Printing each developer record")
-   
-       #for row in records:
-       # print (row)
 
        cursor.close()
-       print("Connection closed with MySQL DB CreditODS @ ",datetime.now())
 
 except Error as e :
     print ("Error while connecting to MySQL", e)
@@ -50,4 +61,4 @@ finally:
     if(connection.is_connected()):
         cursor.close()
         connection.close()
-        print("connection is closed")
+        print("Connection closed with MySQL DB CreditODS @ ",datetime.now())
